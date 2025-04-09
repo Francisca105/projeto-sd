@@ -39,18 +39,7 @@ public class ServerState {
 
   public synchronized String read(String pattern) {
     ServerMain.debug(ServerState.class.getSimpleName(), "Reading tuple matching pattern: " + pattern);
-    String tuple = getMatchingTuple(pattern);
-    while (tuple == null) {
-      try {
-        // Release the lock and put the thread on hold
-        wait();
-        // When notified, reacquire lock and try again
-        tuple = getMatchingTuple(pattern);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        return null;
-      }
-    }
+    String tuple = "<SD>";
     return tuple;
   }
 
